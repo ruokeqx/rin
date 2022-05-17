@@ -35,6 +35,9 @@ func (engine *Engine) Run(addr string) (err error) {
 	return http.ListenAndServe(addr, engine)
 }
 
+// Implementation of ServeHTTP interface(type Handler) (Need for http.ListenAndServe(,engine))
+// Once Implemented, all HTTP request would be handled by the function
+// 在 Go 语言中，实现了接口方法的 struct 都可以强制转换为接口类型
 func (engine *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	c := newContext(w, req)
 	engine.router.handle(c)

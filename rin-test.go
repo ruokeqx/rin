@@ -18,20 +18,43 @@ import (
 // 	r.Run(":9999")
 // }
 
+// func day2() {
+// 	r := rin.New()
+// 	r.GET("/", func(c *rin.Context) {
+// 		c.HTML(http.StatusOK, "<h1>Hello rin</h1>")
+// 	})
+// 	r.GET("/hello", func(c *rin.Context) {
+// 		// expect /hello?name=ruokeqx
+// 		c.String(http.StatusOK, "hello %s, you're at %s\n", c.Query("name"), c.Path)
+// 	})
+// 	r.POST("/login", func(c *rin.Context) {
+// 		c.JSON(http.StatusOK, rin.H{
+// 			"username": c.PostForm("username"),
+// 			"password": c.PostForm("password"),
+// 		})
+// 	})
+// 	r.Run(":9999")
+// }
+
 func main() {
 	r := rin.New()
 	r.GET("/", func(c *rin.Context) {
 		c.HTML(http.StatusOK, "<h1>Hello rin</h1>")
 	})
+
 	r.GET("/hello", func(c *rin.Context) {
 		// expect /hello?name=ruokeqx
 		c.String(http.StatusOK, "hello %s, you're at %s\n", c.Query("name"), c.Path)
 	})
-	r.POST("/login", func(c *rin.Context) {
-		c.JSON(http.StatusOK, rin.H{
-			"username": c.PostForm("username"),
-			"password": c.PostForm("password"),
-		})
+
+	r.GET("/hello/:name", func(c *rin.Context) {
+		// expect /hello/ruokeqx
+		c.String(http.StatusOK, "hello %s, you're at %s\n", c.Param("name"), c.Path)
 	})
+
+	r.GET("/assets/*filepath", func(c *rin.Context) {
+		c.JSON(http.StatusOK, rin.H{"filepath": c.Param("filepath")})
+	})
+
 	r.Run(":9999")
 }

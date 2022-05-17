@@ -26,3 +26,19 @@ Content-Length: 20
 
 404 NOT FOUND: /xxx
 ```
+
+DAY3
+```
+C:\Users\ruokeqx> curl 127.0.0.1:9999/hello/ruokeqx -i
+HTTP/1.1 200 OK
+Content-Type: text/plain
+Date: Tue, 17 May 2022 10:09:31 GMT
+Content-Length: 40
+
+hello ruokeqx, you're at /hello/ruokeqx
+C:\Users\ruokeqx> curl 127.0.0.1:9999/assets/images/ruokeqx.png
+{"filepath":"images/ruokeqx.png"}
+C:\Users\ruokeqx> curl 127.0.0.1:9999/assets/ruokeqx.png
+{"filepath":"ruokeqx.png"}
+C:\Users\ruokeqx>
+```
