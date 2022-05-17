@@ -42,3 +42,19 @@ C:\Users\ruokeqx> curl 127.0.0.1:9999/assets/ruokeqx.png
 {"filepath":"ruokeqx.png"}
 C:\Users\ruokeqx>
 ```
+
+DAY4
+```
+C:\Users\ruokeqx> curl 127.0.0.1:9999/v1/hello?name=ruokeqx
+hello ruokeqx, you're at /v1/hello
+C:\Users\ruokeqx> curl 127.0.0.1:9999/v2/hello/ruokeqx
+hello ruokeqx, you're at /v2/hello/ruokeqx
+```
+
+DAY5
+```
+C:\Users\ruokeqx> curl 127.0.0.1:9999
+<h1>Hello rin</h1>
+C:\Users\ruokeqx> curl 127.0.0.1:9999/v2/hello/ruokeqx
+{"message":"Internal Server Error"}
+```
