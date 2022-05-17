@@ -1,0 +1,28 @@
+DAY2
+```
+C:\Users\ruokeqx> curl -i 127.0.0.1:9999
+HTTP/1.1 200 OK
+Content-Type: text/html
+Date: Tue, 17 May 2022 09:20:03 GMT
+Content-Length: 18
+
+<h1>Hello rin</h1>
+C:\Users\ruokeqx> curl 127.0.0.1:9999/hello?name=ruokeqx
+hello ruokeqx, you're at /hello
+C:\Users\ruokeqx> curl 127.0.0.1:9999/login -X POST -d "username=ruokeqx&password=ruokeqx"
+{"password":"ruokeqx","username":"ruokeqx"}
+C:\Users\ruokeqx> curl 127.0.0.1:9999/login -X POST -d "username=ruokeqx&password=ruokeqx" -i
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Tue, 17 May 2022 09:22:01 GMT
+Content-Length: 44
+
+{"password":"ruokeqx","username":"ruokeqx"}
+C:\Users\ruokeqx> curl 127.0.0.1:9999/xxx -i
+HTTP/1.1 404 Not Found
+Content-Type: text/plain
+Date: Tue, 17 May 2022 09:22:15 GMT
+Content-Length: 20
+
+404 NOT FOUND: /xxx
+```
