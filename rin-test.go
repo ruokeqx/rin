@@ -1,10 +1,8 @@
 package main
 
 import (
-	"log"
 	"net/http"
 	"rin"
-	"time"
 )
 
 // func day1() {
@@ -88,27 +86,39 @@ import (
 // 	r.Run(":9999")
 // }
 
-func main() {
-	r := rin.New()
-	r.Use(rin.Logger()) // global midlleware
-	r.GET("/", func(c *rin.Context) {
-		c.HTML(http.StatusOK, "<h1>Hello rin</h1>")
-	})
-	v2 := r.Group("/v2")
-	v2.Use(func(c *rin.Context) {
-		// Start timer
-		t := time.Now()
-		// if a server error occurred
-		c.Fail(500, "Internal Server Error")
-		// Calculate resolution time
-		log.Printf("[%d] %s in %v for group v2", c.StatusCode, c.Req.RequestURI, time.Since(t))
-	}) // v2 group middleware
-	{
-		v2.GET("/hello/:name", func(c *rin.Context) {
-			// would not execute,cause Fail Abort
-			c.String(http.StatusOK, "hello %s, you're at %s\n", c.Param("name"), c.Path)
-		})
-	}
+// func day5() {
+// 	r := rin.New()
+// 	r.Use(rin.Logger()) // global midlleware
+// 	r.GET("/", func(c *rin.Context) {
+// 		c.HTML(http.StatusOK, "<h1>Hello rin</h1>")
+// 	})
+// 	v2 := r.Group("/v2")
+// 	v2.Use(func(c *rin.Context) {
+// 		// Start timer
+// 		t := time.Now()
+// 		// if a server error occurred
+// 		c.Fail(500, "Internal Server Error")
+// 		// Calculate resolution time
+// 		log.Printf("[%d] %s in %v for group v2", c.StatusCode, c.Req.RequestURI, time.Since(t))
+// 	}) // v2 group middleware
+// 	{
+// 		v2.GET("/hello/:name", func(c *rin.Context) {
+// 			// would not execute,cause Fail Abort
+// 			c.String(http.StatusOK, "hello %s, you're at %s\n", c.Param("name"), c.Path)
+// 		})
+// 	}
+// 	r.Run(":9999")
+// }
 
+func main() {
+	r := rin.Default()
+	r.GET("/", func(c *rin.Context) {
+		c.String(http.StatusOK, "Hello ruokeqx\n")
+	})
+	// index out of range for testing Recovery()
+	r.GET("/panic", func(c *rin.Context) {
+		names := []string{"ruokeqx"}
+		c.String(http.StatusOK, names[100])
+	})
 	r.Run(":9999")
 }
